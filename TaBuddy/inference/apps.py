@@ -33,7 +33,7 @@ class InferenceConfig(AppConfig):
         # Prevent reloading in every worker in production
         if not os.environ.get('RUN_MAIN'):
             print("Inference App: Initializing model...")
-            ModelManager.initialize()
+            # ModelManager.initialize()
 
     @classmethod
     def reload_model(cls, new_model_path, new_adapter_path):

@@ -190,9 +190,9 @@ def create_zero_shot_prompts (context, codes, task, options) :
         student_code = codes[student_id]
 
         zero_shot_prompts[student_id] = create_zero_shot_prompt(context, student_code, task, options)
-       
-        with open(file_path, "a") as f:
-            f.write(zero_shot_prompts[student_id] + "\n\n\n")  # Appends with 3 new lines
+        
+        with open(file_path, "a",  encoding="utf-8") as f:
+            f.write(zero_shot_prompts[student_id] + "\n\n\n")  
 
 
     return zero_shot_prompts
@@ -221,7 +221,6 @@ def grade_k_shot (model, tokenizer, system_prompt, zero_shot_prompts, device, ma
         user_prompt = zero_shot_prompts[student_id]
         
         string_response = generate_single_response(model, tokenizer, user_prompt, device, system_prompt=system_prompt, max_length=max_length)
-        
         responses[student_id] = string_response
         
     return responses
